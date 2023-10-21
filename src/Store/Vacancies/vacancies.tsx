@@ -55,6 +55,11 @@ export const useVacancy = create<State>()(devtools((set) => ({
             id: 10,
             title: "Electrician",
             text: "Install and repair electrical systems and equipment.",
+        },        
+        {
+            id: 11,
+            title: "Electrician",
+            text: "Install and repair electrical systems and equipment.",
         },
     ],
 
