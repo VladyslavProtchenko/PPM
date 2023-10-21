@@ -1,0 +1,119 @@
+import {useForm} from "react-hook-form";
+import {useStoreLogin} from "../../Store/Login/store.ts";
+import {IUserLogin} from "../../Store/Login/interfaces.ts";
+import {useState} from "react";
+import {BsEye, BsEyeSlash} from "react-icons/bs";
+import { Link } from "react-router-dom";
+
+const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<IUserLogin>({
+        mode: 'all',
+    });
+
+    // const {setUserOrEmail, setPassword} = useStoreLogin()
+    const {setLoginData} = useStoreLogin()
+
+    const onSubmit = (data: IUserLogin) => {
+        console.log(data);
+        setLoginData(data)
+        // setUserOrEmail(data.userOrEmail)
+        // setPassword(data.password)
+        reset()
+    };
+
+    return (
+        <div>
+            <div className={wrapper}>
+                <div className={formContainer}>
+                    <div className={loginHead}>Login</div>
+                    <form className={loginFormStyles} onSubmit={handleSubmit(onSubmit)}>
+                        <div className={controlBlock}>
+                            <label htmlFor="email" className={controlLabel}>Username or Email</label>
+                            <input
+                                className={controlInput + `${errors.userOrEmail ? ' border-red-500' : ''}`}
+                                type="text"
+                                id="email"
+                                placeholder="Username or Email"
+                                {...register("userOrEmail", {
+                                    required: 'Username or email is required'
+                                })}
+                            />
+                            <p className={errorMessage}>{errors.userOrEmail?.message}</p>
+                        </div>
+                        <div className={controlBlock}>
+                            <label htmlFor="password" className={controlLabel}>Password</label>
+                            <div className={passwordWrapper}>
+                                <input
+                                    className={controlInput + `${errors.password ? ' border-red-500' : ''}`}
+                                    type={showPassword ? 'text' : 'password'}
+                                    placeholder="Password"
+                                    {...register("password", {
+                                        required: 'Password is required',
+                                        minLength: {value: 8, message: 'Password must be at least 8 characters'},
+                                        maxLength: {value: 20, message: 'Password must be not longer than 20 characters'},
+                                        validate: {
+                                            pattern1: (value) =>
+                                                /[0-9]/.test(value) || 'At least 1 number (0...9)',
+                                            pattern2: (value) =>
+                                                /[a-z]/.test(value) || 'At least 1 lowercase letter (a...z)',
+                                            pattern3: (value) =>
+                                                /[A-Z]/.test(value) || 'At least 1 uppercase letter (A...Z)',
+                                            pattern4: (value) =>
+                                                /[^A-Za-z0-9]/.test(value) || 'At least 1 special symbol (!...$)',
+                                        },
+                                    })}
+                                />
+                                {!showPassword
+                                    ? <BsEyeSlash className={passwordIcon} onClick={() => setShowPassword(true)}/>
+                                    : <BsEye className={passwordIcon} onClick={() => setShowPassword(false)}/>
+                                }
+                            </div>
+                            <p className={errorMessage}>{errors.password?.message}</p>
+
+                        </div>
+                        <div className={termsBlock}>
+                            <input
+                                type="checkbox"
+                                className={termsInput}
+                                {...register("acceptTerms", {
+                                    required: 'Accept Terms is required'
+                                })}
+                            />
+                            <div className={termsTextBlock}>
+                                <div className={termsText}>Acceptance of Terms Of Use</div>
+                                <p className={errorMessage}>{errors.acceptTerms?.message}</p>
+                            </div>
+                        </div>
+
+                        <Link to={'/admin'}
+                            className={loginBtn}
+                            type="submit"
+                        >Login
+                        </Link>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export default Login;
+
+const wrapper = 'flex justify-center items-center h-screen antialiased bg-[#f4f1ed] text-gray-900 font-sans'
+const formContainer = 'flex flex-col w-[70%] bg-white rounded p-8 m-4'
+const loginHead = 'text-center block w-full text-p uppercase font-bold mb-4 text-[#c5b7af]'
+const loginFormStyles = 'mb-4'
+const controlBlock = 'mb-4'
+const errorMessage = 'text-red-500 text-[14px]'
+const termsBlock = 'flex items-center mb-6'
+const termsInput = 'border-gray-300 rounded h-[16px] w-[16px]'
+const termsTextBlock = 'flex flex-col ml-2'
+const termsText = 'text-gray-500'
+const controlLabel = 'text-[20px] text-gray-500 mb-1'
+const controlInput = 'w-full border rounded p-2 outline-none focus:shadow-outline'
+const passwordWrapper = 'relative'
+const passwordIcon = 'absolute top-[25%] right-[3%] text-[22px]'
+const loginBtn = 'bg-[#9e928c] hover:bg-[#8a807a] text-white uppercase text-sm font-semibold px-4 py-2 rounded'
+
