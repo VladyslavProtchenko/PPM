@@ -5,7 +5,6 @@ import {IUser} from "../../types/Types";
 type State = {
     user: IUser
 }
-
 type Actions = {
     setUser: (data: IUser) => void
 }
