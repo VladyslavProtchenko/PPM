@@ -7,48 +7,12 @@ import GoogleMaps from "./officeplace";
 import iconEmail from "../../assets/Icons/email.svg";
 import iconPhone from "../../assets/Icons/phone.svg";
 import iconPlace from "../../assets/Icons/place.svg";
+import { useVacancy } from '../../Store/Vacancies/vacancies';
+import { useCandidate } from '../../Store/Candidate/useCandidate';
 
 const MainPage = () => {
-
-    const jobOpportunities = [
-        {
-            id: 1,
-            name: 'Accounting/Bookkeeping',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'
-        },
-        {
-            id: 2,
-            name: 'Digital Forensics',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 3,
-            name: 'Legal Internship',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 4,
-            name: 'Attorney',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 5,
-            name: 'Client Care/Intake Specialist',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 6,
-            name: 'Translator/Interpreters',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 7,
-            name: 'Social Media Manager',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 8,
-            name: 'Marketing Internship',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        },
-        {
-            id: 9,
-            name: 'Paralegal',
-            description: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from'        }
-    ]
+    const { vacancies } =useVacancy()
+    const {candidates, setActiveVacancy } =useCandidate()
 
     const officeInfo = [
         {
@@ -69,7 +33,7 @@ const MainPage = () => {
             info: 'office@propelem.com'
         }
     ]
-
+    console.log(candidates.activeVacancy)
     return (
         <section className={container}>
             <section className={section1} style={{ backgroundImage: `url(${bg}` }}>
@@ -130,13 +94,23 @@ const MainPage = () => {
                 <div className={wrapper3}>
                     <h1 className={title8}>Job Opportunities</h1>
                     <div className={itemsContainer}>
-                        {jobOpportunities.map((item) =>
-                            <div className={jobItem} key={item.id}>
-                                <div className={jobNumber}>{item.id < 10 ? `0${item.id}.` : `${item.id}.`}</div>
-                                <h1 className={jobName}>{item.name}</h1>
-                                <h2 className={jobDescription}>{item.description}</h2>
-                                <button className={applyBtn}><NavLink to={`/form`}>Apply</NavLink></button>
-                            </div>
+                        {vacancies.list.map((item) =>(
+                                <div className={jobItem} key={item.id}>
+                                    <div className={jobNumber}>{item.id < 10 ? `0${item.id}.` : `${item.id}.`}</div>
+                                    <h1 className={jobName}>{item.title}</h1>
+                                    <h2 className={jobDescription}>{item.text}</h2>
+                                    <button 
+                                        onClick={()=>{
+                                            setActiveVacancy({
+                                                    title:item.title,
+                                                    id:item.id
+                                                })
+                                        }}
+                                        className={applyBtn}
+                                    ><NavLink to={`/form`}>Apply</NavLink></button>
+                                </div>
+                            )
+                            
                         )}
                     </div>
                 </div>

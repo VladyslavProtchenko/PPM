@@ -8,12 +8,13 @@ import {
 } from "react-router-dom";
 import ErrorPage from './pages/ErrorPage';
 import Policy from './pages/Policy/Index.tsx';
-import Form from "./pages/VacancyForm";
+import Form from "./pages/CandidateForm/index.tsx";
 import Login from "./pages/LoginForm";
 import Registration from "./pages/registrationForm";
 import UserInfo from "./pages/userInfo";
 import AdminPage from "./pages/Admin";
 import MainPage from './pages/Main/index.tsx';
+import Success from './pages/CandidateForm/Success.tsx';
 
 const router = createBrowserRouter([
   {
@@ -55,7 +56,11 @@ const router = createBrowserRouter([
         path: 'profile',
         element: <UserInfo/>,
         errorElement: <ErrorPage />,
-    
+      },
+      {
+        path: 'applied',
+        element: <Success/>,
+        errorElement: <ErrorPage />,
       }
     ]
   }

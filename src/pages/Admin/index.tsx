@@ -8,10 +8,12 @@
 // import UserAccounts from "../../components/dataTable/userAccounts.tsx";
 
 // import {Button} from "@mui/material";
-import {useUser} from "../../Store/User/user.ts";
+import {useUser} from "../../Store/User/useUser.tsx";
 import PostsList from "./PostsList.tsx";
 import EmployeeList from './EmployeeList.tsx';
 import { useState } from 'react';
+import PostModal from "./PostModal.tsx";
+import CandidatesList from "./CandidatesList.tsx";
 
 const AdminPage = () => {
     const {user } = useUser()
@@ -70,7 +72,8 @@ const AdminPage = () => {
                     </ul>
                     {nav === 0 &&  <EmployeeList />}
                     {nav === 1 && <PostsList />}
-                    {nav === 2 && <EmployeeList />}
+                    {nav === 2 && <CandidatesList />}
+                    <PostModal />
                 </div>
             </div>
         </section>
@@ -78,6 +81,7 @@ const AdminPage = () => {
 };
 
 export default AdminPage;
+
 
 const headerItem = ' px-4 cursor-pointer hover:underline active:text-gray-500'
 const navigation ="flex w-full py-3 items-center justify-center mb-12 shadow"

@@ -1,32 +1,28 @@
 import React from 'react';
 import type { ColumnsType } from 'antd/es/table';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined ,DeleteOutlined} from '@ant-design/icons';
 import { Table } from 'antd';
 import { IVacancy } from '../../types/Types.ts';
 import { useVacancy } from '../../Store/Vacancies/vacancies.tsx';
+import { PlusOutlined,HddOutlined } from "@ant-design/icons";
 
 
 const PostsList: React.FC = () => {
-    const { vacancies,  setVacancy } = useVacancy()
+    const { vacancies, setModal,setIsEditable,removeVacancy,setIsAdd } = useVacancy()
     const columns: ColumnsType<IVacancy> = [
         {
             title: 'edit info',
             dataIndex: '',
             key: 'action',
-            render: (status, item) => (
-                status  ? <EditOutlined className='cursor-pointer'/> 
-                        : <button
-                        className={btn}
+            render: (item) => (
+                    <EditOutlined 
+                        className='cursor-pointer'
                         onClick={() => {
-                            const res = vacancies.map(vacancy => {
-                                if(vacancy.id === item.id) return {...vacancy,}
-                                    return vacancy
-                                }
-                            )
-                            setVacancy(res)
+                            setIsEditable(item.id)
+                            setModal(true)
                         }}
-                    >apply</button>
-            ),
+                    /> 
+                ),
         },
         {
             title: 'title',
@@ -38,12 +34,38 @@ const PostsList: React.FC = () => {
             dataIndex: 'text',
             key: 'text',
         },
+        {
+            title: 'remove',
+            dataIndex: '',
+            key: 'action',
+            render: (item) => (
+                    <DeleteOutlined
+                        className='cursor-pointer'
+                        onClick={() => {
+                            removeVacancy(item.id)
+                            
+                        }}
+                    /> 
+                ),
+        },
 
     ]
-
-    return (<Table className='w-full' columns={columns} dataSource={vacancies} />)
+    return (
+    <>
+        <div className="flex w-full px-10 justify-between mb-5">
+            <button 
+                className={addBtn} 
+                onClick={()=>{
+                    setIsAdd(true)
+                    setModal(true)
+                }}
+            ><PlusOutlined className='mr-2'/>Add vacancy</button>
+            <button className=' text-xs'>Archive<HddOutlined className='ml-2'/></button>
+        </div>
+        <Table className='w-full' columns={columns} dataSource={vacancies.list} />
+    </>
+    )
 } ;
 
 export default PostsList;
-
-const btn = 'rounded-lg px-2 py-1 bg-[#9e928c] text-gray-100 hover:bg-[#8a807a] active:bg-[#623e2a] duration-300 font-gilda '
+const addBtn = ' px-2 py-1 text-xs bg-gray-200 hover:bg-gray-100 active:bg-gray-300 rounded'

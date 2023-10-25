@@ -1,17 +1,15 @@
 import {create} from 'zustand'
 import {devtools} from "zustand/middleware";
-import {IUser} from "../../types/Types";
+import { IUser } from "../../types/Types";
 
-type State = {
-    user: IUser
+
+interface IUserProps {
+    user: IUser;
+    setUser:(data: IUser) => void;
+    removeUser:(data: number) => void;
 }
-type Actions = {
-    setUser: (data: IUser) => void
-}
 
-
-export const useUser = create<State & Actions>()(devtools((set) => ({
-
+export const useUser = create<IUserProps>()(devtools((set) => ({
     user: {
         id: 1,
         img: "https://images.pexels.com/photos/8405873/pexels-photo-8405873.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
@@ -31,8 +29,26 @@ export const useUser = create<State & Actions>()(devtools((set) => ({
         fullNameOfSupervisor: 'new',
         lastPaymentDate: '07/09/2023',
     },
-
     setUser: (data) => set(state => ({user: {...state.user, ...data}})),
+    removeUser: () => set(() => ({user: {
+        id: 1,
+        img: "",
+        lastName: "",
+        name: "",
+        email: "",
+        phone: "",
+        createdAt: "",
+        verified: true,
+        fullName: "",
+        address: '',
+        title: '',
+        briefJobDescription: '',
+        compensationType: '',
+        methodOfPayment: '',
+        compensationSchedule: '',
+        fullNameOfSupervisor: '',
+        lastPaymentDate: '',
+    }})),
 })))
 
 

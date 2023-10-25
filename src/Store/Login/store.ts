@@ -1,6 +1,6 @@
 import { create } from 'zustand'
-import {IUserLogin} from "./interfaces.ts";
 import {devtools} from "zustand/middleware";
+import { IUserLogin } from '../../types/Types';
 
 
 type State = {
@@ -9,8 +9,6 @@ type State = {
 
 type Actions = {
     setLoginData: (user: IUserLogin) => void
-    // setUserOrEmail: (user: string) => void
-    // setPassword: (user: string) => void
 }
 
 
@@ -19,11 +17,7 @@ export const useStoreLogin = create<State & Actions>()(devtools((set) => ({
         userOrEmail: '',
         password: '',
     },
-
-    setLoginData: (loginuser) => set(state => ({user: {...state.user, ...loginuser}}))
-
-
-    // setUserOrEmail: (userOrEmail) => set(state=> ({ user: {...state.user,  userOrEmail}})),
-    // setPassword: (password) => set(state=> ({ user: {...state.user,  password}})),
+    setLoginData: (data) => set(state => ({user: {...state.user, ...data}}))
 })))
+
 

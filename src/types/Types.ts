@@ -7,7 +7,7 @@ export interface IMessage {
 }
 
 export interface IUser {
-    id: number | null;
+    id: number;
     name: string;
     lastName: string;
     img: string;
@@ -44,7 +44,60 @@ export type IVacancy = {
     title: string;
     text: string;
 }
-export type State = {
-    vacancies: IVacancy[];
-    setVacancy: (data: IVacancy[]) => void
+export interface IVacancies {
+    vacancies:{
+        list: IVacancy[];
+        isModal: boolean;
+        isEditable: number;
+        isAdd: boolean;
+    } 
+    setVacancy: (data: IVacancy) => void
+    editVacancy: (data: IVacancy) => void
+    removeVacancy: (data: number) => void
+    setModal: (data: boolean) => void
+    setIsAdd: (data: boolean) => void
+    setIsEditable: (data: number) => void
+}
+
+
+export interface ICandidate {
+    id:number;
+    name: string
+    lastName: string
+    email: string
+    phone: string
+    extraContact?: string
+    messenger?: string
+    message?: string
+    cv: File | null
+    vacancyTitle: string
+    vacancyId: number
+}
+export interface ICandidates { 
+    candidates:{
+        candidate:ICandidate;
+        list: ICandidate[];
+        activeVacancy: {
+            title: string
+            id:number
+        }
+    }
+    setCandidate: (vacancy: ICandidate) => void;
+    setActiveVacancy: (vacancy: {title:string, id:number}) => void;
+}
+
+export interface IUserLogin {
+    userOrEmail: string
+    password: string
+    acceptTerms?: boolean | undefined
+}
+
+export interface IUsers {
+    users: {
+        list: IUser[]
+    }
+    setUsers: (data: IUser[]) => void
+    addUser: (data: IUser) => void
+    editUser: (data: IUser) => void
+    removeUser: (data: number) => void
 }

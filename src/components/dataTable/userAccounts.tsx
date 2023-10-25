@@ -8,7 +8,7 @@ import {IUser} from "../../types/Types.ts";
 import DeleteUser from "../modals/deleteUser.tsx";
 
 const initialUser: IUser = {
-    id: null,
+    id: 0,
     name: '',
     lastName: '',
     img: '',

@@ -1,59 +1,58 @@
 import {NavLink} from "react-router-dom";
 import MessagesTable from "./messagesTable.tsx";
-import { users } from "../../DB/Users.tsx";
+import { useUsers } from "../../Store/Users/useUsers.tsx";
 
 
 const UserInfo = () => {
-    const user = users[0]
-
+    const { users } = useUsers()
     return (
         <section className={section}>
             <div className={wrapper}>
                 <section className={content}>
                     <div className={infoCard}>
                         <div className={userPhoto}>
-                            <img src={user.img} alt='avatar'/>
+                            <img src={users.list[0].img} alt='avatar'/>
                         </div>
-                        <h1 className={nameTitle}>{user.name} {user.lastName}</h1>
+                        <h1 className={nameTitle}>{users.list[0].name} {users.list[0].lastName}</h1>
                         <div className={information}>
 
                             <div className={infoItem}>
-                                Address: <span className={dataItem}>{user.address}</span>
+                                Address: <span className={dataItem}>{users.list[0].address}</span>
                             </div>
 
                             <div className={infoItem}>
-                                Mobile number: <span className={dataItem}>{user.phone}</span>
+                                Mobile number: <span className={dataItem}>{users.list[0].phone}</span>
                             </div><br/>
 
                             <div className={infoItem}>
-                                Brief job description: <span className={dataItem}>{user.briefJobDescription}</span>
+                                Brief job description: <span className={dataItem}>{users.list[0].briefJobDescription}</span>
                             </div>
                             <div className={infoItem}>
-                                Full name of supervisor: <span className={dataItem}>{user.fullNameOfSupervisor}</span>
+                                Full name of supervisor: <span className={dataItem}>{users.list[0].fullNameOfSupervisor}</span>
                             </div><br/>
 
                             <div className={infoItem}>
-                                Compensation type: <span className={dataItem}>{user.compensationType}</span>
+                                Compensation type: <span className={dataItem}>{users.list[0].compensationType}</span>
                             </div>
 
                             <div className={infoItem}>
-                                Method of payment: <span className={dataItem}>{user.methodOfPayment}</span>
+                                Method of payment: <span className={dataItem}>{users.list[0].methodOfPayment}</span>
                             </div>
 
                             <div className={infoItem}>
-                                Compensation schedule: <span className={dataItem}>{user.compensationSchedule}</span>
+                                Compensation schedule: <span className={dataItem}>{users.list[0].compensationSchedule}</span>
                             </div>
 
 
 
                             <div className={infoItem}>
-                                Last payment date: <span className={dataItem}>{user.lastPaymentDate}</span>
+                                Last payment date: <span className={dataItem}>{users.list[0].lastPaymentDate}</span>
                             </div>
                         </div>
                     </div>
 
                     <div className={contentCard}>
-                        <div className={greeting}>Welcome, {user.name}!</div>
+                        <div className={greeting}>Welcome, {users.list[0].name}!</div>
                         <MessagesTable />
                     </div>
                 </section>

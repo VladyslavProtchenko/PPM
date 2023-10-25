@@ -1,26 +1,23 @@
 import {useForm} from "react-hook-form";
 import {useStoreLogin} from "../../Store/Login/store.ts";
-import {IUserLogin} from "../../Store/Login/interfaces.ts";
 import {useState} from "react";
 import {BsEye, BsEyeSlash} from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { IUserLogin } from "../../types/Types.ts";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
-
+    const navigate = useNavigate()
     const {register, handleSubmit, formState: {errors}, reset} = useForm<IUserLogin>({
         mode: 'all',
     });
-
-    // const {setUserOrEmail, setPassword} = useStoreLogin()
+    
     const {setLoginData} = useStoreLogin()
 
     const onSubmit = (data: IUserLogin) => {
-        console.log(data);
         setLoginData(data)
-        // setUserOrEmail(data.userOrEmail)
-        // setPassword(data.password)
         reset()
+        navigate('/profile')
     };
 
     return (
@@ -73,25 +70,12 @@ const Login = () => {
                             <p className={errorMessage}>{errors.password?.message}</p>
 
                         </div>
-                        <div className={termsBlock}>
-                            <input
-                                type="checkbox"
-                                className={termsInput}
-                                {...register("acceptTerms", {
-                                    required: 'Accept Terms is required'
-                                })}
-                            />
-                            <div className={termsTextBlock}>
-                                <div className={termsText}>Acceptance of Terms Of Use</div>
-                                <p className={errorMessage}>{errors.acceptTerms?.message}</p>
-                            </div>
-                        </div>
 
-                        <Link to={'/admin'}
+                        <button 
                             className={loginBtn}
                             type="submit"
                         >Login
-                        </Link>
+                        </button>
                     </form>
                 </div>
             </div>
@@ -107,10 +91,6 @@ const loginHead = 'text-center block w-full text-p uppercase font-bold mb-4 text
 const loginFormStyles = 'mb-4'
 const controlBlock = 'mb-4'
 const errorMessage = 'text-red-500 text-[14px]'
-const termsBlock = 'flex items-center mb-6'
-const termsInput = 'border-gray-300 rounded h-[16px] w-[16px]'
-const termsTextBlock = 'flex flex-col ml-2'
-const termsText = 'text-gray-500'
 const controlLabel = 'text-[20px] text-gray-500 mb-1'
 const controlInput = 'w-full border rounded p-2 outline-none focus:shadow-outline'
 const passwordWrapper = 'relative'
