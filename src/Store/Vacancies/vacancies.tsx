@@ -76,9 +76,9 @@ export const useVacancy = create<IVacancies>()(
 
             editVacancy: (data) => set((state) => {
                 return {vacancies: {
-                    ...state.vacancies, list: [...state.vacancies.list.map(item => {
+                    ...state.vacancies, list: state.vacancies.list.map(item => {
                         return item.id === data.id ? data : item
-                    })]
+                    })
                 }}
             }),
             removeVacancy: (data) => set((state) => {
