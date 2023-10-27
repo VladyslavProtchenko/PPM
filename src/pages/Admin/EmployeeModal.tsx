@@ -72,92 +72,99 @@ const EmployeeModal = ({ data, openModal, handleCloseModal }:{ data: IUser, open
                 )}
             >
                 
-                <div className='flex flex-col space-y-5'>
-                    <Input
-                        value={name}
-                        placeholder='Name' 
-                        onChange={(e) =>setName(e.target.value)}
-                    />
-                    <Input 
-                        value={lastName}
-                        placeholder='Last name' 
-                        onChange={(e)=>{
-                            setLastName(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={email}
-                        placeholder='Email' 
-                        onChange={(e)=>{
-                            setEmail(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={phone}
-                        placeholder='Phone' 
-                        onChange={(e)=>{
-                            setPhone(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={address}
-                        placeholder='Address' 
-                        onChange={(e)=>{
-                            setAddress(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={title}
-                        placeholder='Title' 
-                        onChange={(e)=>{
-                            setTitle(e.target.value)
-                        }}
-                    />
-                    <TextArea 
-                        value={briefJobDescription}
-                        placeholder='Job description' 
-                        onChange={(e)=>{
-                            setBriefJobDescription(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={compensationType}
-                        placeholder='Compensation type' 
-                        onChange={(e)=>{
-                            setCompensationType(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={methodOfPayment}
-                        placeholder='Payment method' 
-                        onChange={(e)=>{
-                            setMethodOfPayment(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={compensationSchedule}
-                        placeholder='Compensation schedule' 
-                        onChange={(e)=>{
-                            setCompensationSchedule(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={fullNameOfSupervisor}
-                        placeholder='superior full-name' 
-                        onChange={(e)=>{
-                            setFullNameOfSupervisor(e.target.value)
-                        }}
-                    />
-                    <Input 
-                        value={lastPaymentDate}
-                        placeholder='last payment data' 
-                        onChange={(e)=>{
-                            setLastPaymentDate(e.target.value)
-                        }}
-                    />
+                <div className='flex divide-x border-t pt-10'>
+                    <div className={block}>
+                        <Input
+                            value={name}
+                            placeholder='Name' 
+                            onChange={(e) =>setName(e.target.value)}
+                        />
+                        <Input 
+                            value={lastName}
+                            placeholder='Last name' 
+                            onChange={(e)=>{
+                                setLastName(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={email}
+                            placeholder='Email' 
+                            onChange={(e)=>{
+                                setEmail(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={phone}
+                            placeholder='Phone' 
+                            onChange={(e)=>{
+                                setPhone(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={address}
+                            placeholder='Address' 
+                            onChange={(e)=>{
+                                setAddress(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={title}
+                            placeholder='Title' 
+                            onChange={(e)=>{
+                                setTitle(e.target.value)
+                            }}
+                        />
+                        <TextArea 
+                            value={briefJobDescription}
+                            placeholder='Job description' 
+                            onChange={(e)=>{
+                                setBriefJobDescription(e.target.value)
+                            }}
+                        />
+                    </div>
+
+                    <div className={block}>
+                        <Input 
+                            value={compensationType}
+                            placeholder='Compensation type' 
+                            onChange={(e)=>{
+                                setCompensationType(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={methodOfPayment}
+                            placeholder='Payment method' 
+                            onChange={(e)=>{
+                                setMethodOfPayment(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={compensationSchedule}
+                            placeholder='Compensation schedule' 
+                            onChange={(e)=>{
+                                setCompensationSchedule(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={fullNameOfSupervisor}
+                            placeholder='superior full-name' 
+                            onChange={(e)=>{
+                                setFullNameOfSupervisor(e.target.value)
+                            }}
+                        />
+                        <Input 
+                            value={lastPaymentDate}
+                            placeholder='last payment data' 
+                            onChange={(e)=>{
+                                setLastPaymentDate(e.target.value)
+                            }}
+                        />
+                    </div>
                 </div>
             </Modal>
     );
 };
 
 export default EmployeeModal;
+
+const block = 'flex w-1/2 flex-col space-y-4 px-5' 

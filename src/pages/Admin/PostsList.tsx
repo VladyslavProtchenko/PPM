@@ -1,14 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
 import { EditOutlined ,DeleteOutlined} from '@ant-design/icons';
 import { Table } from 'antd';
 import { IVacancy } from '../../types/Types.ts';
 import { useVacancy } from '../../Store/Vacancies/vacancies.tsx';
 import { PlusOutlined,HddOutlined } from "@ant-design/icons";
+import PostModal from './PostModal.tsx';
 
 
 const PostsList: React.FC = () => {
-    const { vacancies, setModal,setIsEditable,removeVacancy,setIsAdd } = useVacancy()
+    const { vacancies, setModal,removeVacancy,setIsAdd } = useVacancy()
+    const [post, setPost] =useState({
+        title:'',
+        text:''
+    })
+    console.log(post,' post')
     const columns: ColumnsType<IVacancy> = [
         {
             title: 'edit info',
@@ -18,7 +24,8 @@ const PostsList: React.FC = () => {
                     <EditOutlined 
                         className='cursor-pointer'
                         onClick={() => {
-                            setIsEditable(item.id)
+                            setIsAdd(false)
+                            setPost(item)
                             setModal(true)
                         }}
                     /> 
@@ -43,7 +50,6 @@ const PostsList: React.FC = () => {
                         className='cursor-pointer'
                         onClick={() => {
                             removeVacancy(item.id)
-                            
                         }}
                     /> 
                 ),
@@ -52,20 +58,23 @@ const PostsList: React.FC = () => {
     ]
     return (
     <>
-        <div className="flex w-full px-10 justify-between mb-5">
+        <div className="flex w-full pr-10 justify-between h-10">
             <button 
                 className={addBtn} 
                 onClick={()=>{
                     setIsAdd(true)
                     setModal(true)
+                    setIsAdd(true)
                 }}
             ><PlusOutlined className='mr-2'/>Add vacancy</button>
-            <button className=' text-xs'>Archive<HddOutlined className='ml-2'/></button>
+            <button className=' text-sm'>Archive<HddOutlined className='ml-2'/></button>
         </div>
         <Table className='w-full' columns={columns} dataSource={vacancies.list} />
+        <PostModal data={post} />
     </>
     )
 } ;
 
 export default PostsList;
-const addBtn = ' px-2 py-1 text-xs bg-gray-200 hover:bg-gray-100 active:bg-gray-300 rounded'
+
+const addBtn = ' px-2 text-sm bg-blue-200 hover:bg-blue-100 active:bg-gray-300'

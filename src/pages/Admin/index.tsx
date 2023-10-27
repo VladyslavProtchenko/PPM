@@ -12,8 +12,8 @@ import {useUser} from "../../Store/User/useUser.tsx";
 import PostsList from "./PostsList.tsx";
 import EmployeeList from './EmployeeList.tsx';
 import { useState } from 'react';
-import PostModal from "./PostModal.tsx";
 import CandidatesList from "./CandidatesList.tsx";
+import { Link } from "react-router-dom";
 
 const AdminPage = () => {
     const {user } = useUser()
@@ -21,6 +21,15 @@ const AdminPage = () => {
 
     return (
         <section className={section}>
+            <div className='w-screen flex justify-center z-40 shadow'>
+                <ul className={navigation}>
+                    <Link to='/' className={headerItem +' mr-auto font-black text-blue-900'}>PROPELEM</Link>
+                    <li className={nav===0 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(0)}>Employee</li>
+                    <li className={nav===1 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(1)}>Vacancies</li>
+                    <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(2)}>Candidates</li>
+                </ul>
+            </div>
+            
             <div className={wrapper}>
                 <div className={adminInfo}>
                     <img src={user.img} alt='logo' className={adminPhoto}/>
@@ -65,15 +74,10 @@ const AdminPage = () => {
                 </div>
 
                 <div className={posts}>
-                    <ul className={navigation}>
-                        <li className={nav===0 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(0)}>Employee</li>
-                        <li className={nav===1 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(1)}>Vacancies</li>
-                        <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(2)}>Candidates</li>
-                    </ul>
+
                     {nav === 0 &&  <EmployeeList />}
                     {nav === 1 && <PostsList />}
                     {nav === 2 && <CandidatesList />}
-                    <PostModal />
                 </div>
             </div>
         </section>
@@ -84,7 +88,6 @@ export default AdminPage;
 
 
 const headerItem = ' px-4 cursor-pointer hover:underline active:text-gray-500'
-const navigation ="flex w-full py-3 items-center justify-center mb-12 shadow"
 
 const adminPhoto = 'w-[250px] h-[250px] rounded-full'
 const dataFields = 'md:items-start'
@@ -103,8 +106,8 @@ const dataField = 'text-black text-cardTextP font-lato'
 
 
 const posts = 'flex flex-col w-2/3'
-const adminInfo = 'flex flex-col  bg-[#f3f5fb] items-center h-full py-10 w-1/3 lg:w-full md:mb-10'
+const adminInfo = 'flex flex-col flex-1 bg-[#f3f5fb] items-center py-10 w-1/3 lg:w-full md:mb-10'
 
-
-const wrapper = 'flex w-full max-w-[1440px]'
-const section = 'bg-[#ffff] h-full min-h-screen w-screen flex justify-center  font-lato'
+const navigation ="flex w-full py-3 items-center justify-center max-w-[1240px] "
+const wrapper = 'flex w-full flex-1 max-w-[1440px]'
+const section = 'bg-[#ffff] flex-col h-full min-h-screen min-w-screen flex  font-lato'

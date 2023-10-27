@@ -9,21 +9,32 @@ export interface IMessage {
 export interface IUser {
     id: number;
     name: string;
-    lastName: string;
-    img: string;
     email: string
     phone: string;
-    createdAt: string;
-    verified: boolean;
-    fullName: string;
-    address: string;
+    address: {
+        number: string,
+        street: string,
+        apt: string,
+        city: string,
+        state: string,
+        country: string,
+        postalCode: string,
+    };
+    status: string;
     title: string;
-    briefJobDescription: string;
-    compensationType: string;
-    methodOfPayment: string;
-    compensationSchedule: string;
-    fullNameOfSupervisor: string;
-    lastPaymentDate: string;
+    jobDescription: string;
+    compensation: string;
+    paymentMethod: string;
+    compensationPeriod: string;
+    agreementSigned: string;//date
+    manager: string;
+    lastPaymentDate: string;//date
+
+    signedConfidentiallyAgreement: string
+    workAgreements: string;
+    GovtID: string;
+    TimeSheetsSubmitted: string;
+    ConfirmReceiptPaid: string;//date
 }
 
 export interface Posts {
@@ -48,7 +59,7 @@ export interface IVacancies {
     vacancies:{
         list: IVacancy[];
         isModal: boolean;
-        isEditable: number;
+        editedVacancy: IVacancy,
         isAdd: boolean;
     } 
     setVacancy: (data: IVacancy) => void

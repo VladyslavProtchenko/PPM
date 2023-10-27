@@ -64,7 +64,11 @@ export const useVacancy = create<IVacancies>()(
                     },
                 ],
                 isModal: false,
-                isEditable: 0,
+                editedVacancy: {
+                    title:'',
+                    text:'',
+                    id: 0
+                },
                 isAdd: false,
             },
 
@@ -83,7 +87,7 @@ export const useVacancy = create<IVacancies>()(
             }),
             removeVacancy: (data) => set((state) => {
                 return {vacancies: {
-                    ...state.vacancies, list: [...state.vacancies.list.filter(item => item.id !== data)]
+                    ...state.vacancies, list: state.vacancies.list.filter(item => item.id !== data)
                 }}
             }),
         }),

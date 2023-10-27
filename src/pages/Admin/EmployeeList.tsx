@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { ColumnsType } from 'antd/es/table';
-import { EditOutlined } from '@ant-design/icons';
+import { EditOutlined,InfoCircleOutlined, SwapLeftOutlined } from '@ant-design/icons';
 import { Table } from 'antd';
 import {IUser } from '../../types/Types.ts'
 import { useUsers } from '../../Store/Users/useUsers.tsx';
@@ -10,7 +10,8 @@ import EmployeeModal from './EmployeeModal.tsx';
 const EmployeeList: React.FC = () => {
     const { users } = useUsers();
     const [openModal, setOpenModal]= useState(false);
-    
+    const [userInfo, setUserInfo] = useState(false)
+
     const [user, setUser] = useState<IUser>({
         id: 0,
         name: '',
@@ -30,7 +31,6 @@ const EmployeeList: React.FC = () => {
         fullNameOfSupervisor: '',
         lastPaymentDate: '',
     });
-
 
         const columns: ColumnsType<IUser> = [
         {
@@ -76,11 +76,11 @@ const EmployeeList: React.FC = () => {
             key: 'action',
             render: (_,item) => (
                 <>
-                    <EditOutlined 
+                    <InfoCircleOutlined 
                         className='cursor-pointer'
                         onClick={( )=> {
-                            setUser(item);
-                            setOpenModal(true)
+                            setUser(item)
+                            setUserInfo(true)
                         }}
                     />
                     
@@ -92,7 +92,30 @@ const EmployeeList: React.FC = () => {
 
     return (
             <>
-                <Table className='w-full' columns={columns} dataSource={users.list} />
+                {userInfo ? 
+                <div className={container}>
+                    <SwapLeftOutlined className='text-3xl cursor-pointer text-blue-800 hover:text-blue-600 absolute top-4 left-20' onClick={( )=> setUserInfo(false)}/>
+                    <EditOutlined className='text-xl cursor-pointer absolute top-10 right-20' onClick={( )=> {
+                            setUser(user) 
+                            setOpenModal(true)
+                            }}/>
+                    <h1 className="text-2xl text-blue-900 self-center mb-16" >{user.fullName} full info!</h1>
+                    <span className='flex'><span className={title}>Name:</span>{user.fullName}</span> 
+                    <hr /><br /><br /><br />
+                    <span className='flex'><div className={title}>Email:</div> {user.email}</span>
+                    <span className='flex'><div className={title}>Contact phone:</div>{user.phone}</span>
+                    <span className='flex'><div className={title}>Address: </div>{user.address}</span>
+                    <span className='flex'><div className={title}>Title:</div>{user.title}</span>
+                    <hr /><br /><br /><br />
+                    <span className='flex'><div className={title}>Superior:</div> {user.fullNameOfSupervisor}</span>
+                    <span className='flex'><div className={title}>Type of compensation:</div> {user.compensationType}</span>
+                    <span className='flex'><div className={title}>Compensation period: </div>{user.compensationSchedule}</span>
+                    <span className='flex'><div className={title}>Payment method: </div>{user.methodOfPayment}</span>
+                    <span className='flex'><div className={title}>Last payment date: </div>{user.lastPaymentDate}</span>
+                    <br /><hr /><br /><br /><br />
+                    <span className='flex'><div className={title}>Job description:</div> {user.briefJobDescription}</span>
+                </div>
+                :<Table className='w-full' columns={columns} dataSource={users.list} />}
                 <EmployeeModal data={user} openModal={openModal} handleCloseModal={setOpenModal}/>
             </>
         )
@@ -100,3 +123,5 @@ const EmployeeList: React.FC = () => {
 
 export default EmployeeList;
 
+const container = 'relative flex flex-col w-full h-full py-5 px-10 text-gray-600'
+const title = 'mr-4  text-gray-800 w-[200px]'
