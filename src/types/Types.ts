@@ -11,23 +11,25 @@ export interface IUser {
     name: string;
     email: string
     phone: string;
-    address: {
-        number: string,
-        street: string,
-        apt: string,
-        city: string,
-        state: string,
-        country: string,
-        postalCode: string,
-    };
+    address: string
+    // {
+    //     number: string,
+    //     street: string,
+    //     apt: string,
+    //     city: string,
+    //     state: string,
+    //     country: string,
+    //     postalCode: string,
+    // };
     status: string;
     title: string;
     jobDescription: string;
+    
+    manager: string;
     compensation: string;
     paymentMethod: string;
     compensationPeriod: string;
     agreementSigned: string;//date
-    manager: string;
     lastPaymentDate: string;//date
 
     signedConfidentiallyAgreement: string

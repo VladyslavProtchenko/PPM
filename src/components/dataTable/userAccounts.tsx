@@ -8,23 +8,27 @@ import {IUser} from "../../types/Types.ts";
 import DeleteUser from "../modals/deleteUser.tsx";
 
 const initialUser: IUser = {
-    id: 0,
-    name: '',
-    lastName: '',
-    img: '',
-    email: '',
-    phone: '',
-    createdAt: '',
-    verified: false,
-    fullName: '',
+    id: 1,
+    name: "",
+    email: "",
+    phone: "",
     address: '',
+    status: '',
     title: '',
-    briefJobDescription: '',
-    compensationType: '',
-    methodOfPayment: '',
-    compensationSchedule: '',
-    fullNameOfSupervisor: '',
-    lastPaymentDate: '',
+    jobDescription: '',
+    
+    manager: '',
+    compensation: '',
+    paymentMethod: '',
+    compensationPeriod: '',
+    agreementSigned:'',//date
+    lastPaymentDate: '',//date
+
+    signedConfidentiallyAgreement: '',
+    workAgreements: '',
+    GovtID: '',
+    TimeSheetsSubmitted: '',
+    ConfirmReceiptPaid: '',//date
 }
 
 type Props = {

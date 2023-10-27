@@ -15,21 +15,25 @@ const EmployeeList: React.FC = () => {
     const [user, setUser] = useState<IUser>({
         id: 0,
         name: '',
-        lastName: '',
-        img: '',
         email: '',
         phone: '',
-        createdAt: '',
-        verified: true,
-        fullName: '',
         address: '',
+        status: '',
         title: '',
-        briefJobDescription: '',
-        compensationType: '',
-        methodOfPayment: '',
-        compensationSchedule: '',
-        fullNameOfSupervisor: '',
-        lastPaymentDate: '',
+        jobDescription: '',
+        
+        manager: '',
+        compensation: '',
+        paymentMethod: '',
+        compensationPeriod: '',
+        agreementSigned: '',//date
+        lastPaymentDate: '',//date
+    
+        signedConfidentiallyAgreement: '',
+        workAgreements: '',
+        GovtID: '',
+        TimeSheetsSubmitted: '',
+        ConfirmReceiptPaid: '',//date
     });
 
         const columns: ColumnsType<IUser> = [
@@ -99,21 +103,21 @@ const EmployeeList: React.FC = () => {
                             setUser(user) 
                             setOpenModal(true)
                             }}/>
-                    <h1 className="text-2xl text-blue-900 self-center mb-16" >{user.fullName} full info!</h1>
-                    <span className='flex'><span className={title}>Name:</span>{user.fullName}</span> 
+                    <h1 className="text-2xl text-blue-900 self-center mb-16" >{user.name} full info!</h1>
+                    <span className='flex'><span className={title}>Name:</span>{user.name}</span> 
                     <hr /><br /><br /><br />
                     <span className='flex'><div className={title}>Email:</div> {user.email}</span>
                     <span className='flex'><div className={title}>Contact phone:</div>{user.phone}</span>
                     <span className='flex'><div className={title}>Address: </div>{user.address}</span>
                     <span className='flex'><div className={title}>Title:</div>{user.title}</span>
                     <hr /><br /><br /><br />
-                    <span className='flex'><div className={title}>Superior:</div> {user.fullNameOfSupervisor}</span>
-                    <span className='flex'><div className={title}>Type of compensation:</div> {user.compensationType}</span>
-                    <span className='flex'><div className={title}>Compensation period: </div>{user.compensationSchedule}</span>
-                    <span className='flex'><div className={title}>Payment method: </div>{user.methodOfPayment}</span>
+                    <span className='flex'><div className={title}>Superior:</div> {user.manager}</span>
+                    <span className='flex'><div className={title}>Type of compensation:</div> {user.compensation}</span>
+                    <span className='flex'><div className={title}>Compensation period: </div>{user.compensationPeriod}</span>
+                    <span className='flex'><div className={title}>Payment method: </div>{user.paymentMethod}</span>
                     <span className='flex'><div className={title}>Last payment date: </div>{user.lastPaymentDate}</span>
                     <br /><hr /><br /><br /><br />
-                    <span className='flex'><div className={title}>Job description:</div> {user.briefJobDescription}</span>
+                    <span className='flex'><div className={title}>Job description:</div> {user.jobDescription}</span>
                 </div>
                 :<Table className='w-full' columns={columns} dataSource={users.list} />}
                 <EmployeeModal data={user} openModal={openModal} handleCloseModal={setOpenModal}/>

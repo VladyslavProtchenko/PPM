@@ -32,11 +32,10 @@ const AdminPage = () => {
             
             <div className={wrapper}>
                 <div className={adminInfo}>
-                    <img src={user.img} alt='logo' className={adminPhoto}/>
                     <div className={dataFields}>
                         <div className={userField}>
                             <div className={userFieldName}>Full name:</div>
-                            <div className={dataField}>{user.fullName}</div>
+                            <div className={dataField}>{user.name}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Address:</div>
@@ -48,23 +47,23 @@ const AdminPage = () => {
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Brief job description:</div>
-                            <div className={dataField}>{user.briefJobDescription}</div>
+                            <div className={dataField}>{user.jobDescription}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Compensation type:</div>
-                            <div className={dataField}>{user.compensationType}</div>
+                            <div className={dataField}>{user.compensation}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Method of payment:</div>
-                            <div className={dataField}>{user.methodOfPayment}</div>
+                            <div className={dataField}>{user.paymentMethod}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Compensation schedule:</div>
-                            <div className={dataField}>{user.compensationSchedule}</div>
+                            <div className={dataField}>{user.compensationPeriod}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Full name of supervisor:</div>
-                            <div className={dataField}>{user.fullNameOfSupervisor}</div>
+                            <div className={dataField}>{user.manager}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Last payment date:</div>
@@ -89,20 +88,10 @@ export default AdminPage;
 
 const headerItem = ' px-4 cursor-pointer hover:underline active:text-gray-500'
 
-const adminPhoto = 'w-[250px] h-[250px] rounded-full'
 const dataFields = 'md:items-start'
 const userField = 'flex my-[10px] '
 const userFieldName = 'text-black text-cardTextP text-[#623e2a] font-lato mr-[10px] font-bold'
 const dataField = 'text-black text-cardTextP font-lato'
-// const title = 'text-[#623e2a] self-center text-5xl font-light px-[15px] mb-10 font-gilda lg:text-headLg md:text-headMg sm:text-headSm'
-// const postItem = 'flex justify-between items-center w-full'
-// const blockItem = 'flex flex-col'
-// const postName = 'text-black text-[16px] text-start text-[#623e2a] font-lato font-bold'
-// const postDescription = 'teFxt-black text-justify text-[16px] font-lato'
-// const editBtn = ' cursor-pointer ml-10'
-// const userAccounts = 'flex flex-col items-center'
-// const accountsHead = 'text-[#623e2a] text-head font-light px-[15px] mb-10 font-gilda lg:text-headLg md:text-headMg sm:text-headSm'
-// const goHomeBtn = 'ml-10 max-w-[300px] self-center rounded-lg px-4 py-2 bg-[#9e928c] text-gray-100 hover:bg-[#8a807a] duration-300 font-gilda text-p lg:text-pLg md:text-pMg sm:text-pSm'
 
 
 const posts = 'flex flex-col w-2/3'

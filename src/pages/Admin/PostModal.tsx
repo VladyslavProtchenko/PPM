@@ -6,7 +6,7 @@ import TextArea from 'antd/es/input/TextArea';
 const PostModal = ({data}:{data:{title:string, text: string }}) => {
     const { vacancies, setModal, editVacancy, setVacancy } = useVacancy()
     const [post, setPost] = useState({
-        id: vacancies.isEditable,
+        id: vacancies.editedVacancy.id,
         ...data
     })
 
@@ -26,7 +26,7 @@ const PostModal = ({data}:{data:{title:string, text: string }}) => {
                                     })
                                     return setModal(false)
                                 }
-                                editVacancy({...post, id: vacancies.isEditable})
+                                editVacancy({...post, id: vacancies.editedVacancy.id})
                                 setModal(false)
                             }}
                         >Apply</Button>
