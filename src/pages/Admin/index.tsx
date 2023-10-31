@@ -14,6 +14,7 @@ import EmployeeList from './EmployeeList.tsx';
 import { useState } from 'react';
 import CandidatesList from "./CandidatesList.tsx";
 import { Link } from "react-router-dom";
+import MainPageEdit from "./MainPageEdit.tsx";
 
 const AdminPage = () => {
     const {user } = useUser()
@@ -27,6 +28,7 @@ const AdminPage = () => {
                     <li className={nav===0 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(0)}>Employee</li>
                     <li className={nav===1 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(1)}>Vacancies</li>
                     <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(2)}>Candidates</li>
+                    <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(3)}>Edit main page</li>
                 </ul>
             </div>
             
@@ -39,7 +41,7 @@ const AdminPage = () => {
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Address:</div>
-                            <div className={dataField}>{user.address}</div>
+                            <div className={dataField}>{user.address.street}</div>
                         </div>
                         <div className={userField}>
                             <div className={userFieldName}>Mobile number:</div>
@@ -77,6 +79,7 @@ const AdminPage = () => {
                     {nav === 0 &&  <EmployeeList />}
                     {nav === 1 && <PostsList />}
                     {nav === 2 && <CandidatesList />}
+                    {nav === 3 && <MainPageEdit />}
                 </div>
             </div>
         </section>

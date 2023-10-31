@@ -9,10 +9,12 @@ import iconPhone from "../../assets/Icons/phone.svg";
 import iconPlace from "../../assets/Icons/place.svg";
 import { useVacancy } from '../../Store/Vacancies/vacancies';
 import { useCandidate } from '../../Store/Candidate/useCandidate';
+import { useMainPage } from '../../Store/MainPage/useMainPage';
 
 const MainPage = () => {
     const { vacancies } =useVacancy()
     const {candidates, setActiveVacancy } =useCandidate()
+    const { content } = useMainPage()
 
     const officeInfo = [
         {
@@ -38,47 +40,47 @@ const MainPage = () => {
         <section className={container}>
             <section className={section1} style={{ backgroundImage: `url(${bg}` }}>
                 <div className={wrapper}>
-                    <h1 className={title}>PROPEL EM</h1>
-                    <h2 className={text}>Taking your ideas to new heights</h2>
+                    <h1 className={title}>{content[0].title}</h1>
+                    <h2 className={text}>{content[0].text}</h2>
                 </div>
             </section>
 
             <section className={section2}>
                 <div className={wrapper}>
-                    <h1 className={title2}>Let Propel Elevate Your Brand And Power Your Online Presence</h1>
-                    <p className={text2}>Are you ready to take your business to the next level? Propel is here to help! With our extensive experience in marketing, business coaching, strategic planning, and workplace solutions, we have helped numerous recognized brands achieve success. By working with Propel, you'll have access to our Founder and a network of top-tier consultants who will help you power your online presence and elevate your brand. Whether you need help with social media, website design, or overall business strategy, we've got you covered.</p>
+                    <h1 className={title2}>{content[1].title}</h1>
+                    <p className={text2}>{content[1].text}</p>
                 </div>
             </section>
 
             <section className={section3} style={{ backgroundImage: `url(${bg2}` }}>
                 <div className={wrapper}>
-                    <h1 className={title3}>Considering to implement<br/> strategic marketing?</h1>
-                    <h2 className={text3}>It's a smart move!</h2>
-                    <h2 className={text3}>Sell smarter by really understanding your customers, identifying what makes your product or service unique, setting achievable goals, and creating a game plan to reach the right people in the right way.</h2>
+                    <h1 className={title3}>{content[2].title}<br/>{content[2].title2}</h1>
+                    <h2 className={text3}>{content[2].text}</h2>
+                    <h2 className={text3}>{content[2].text2}</h2>
                 </div>
             </section>
 
             <section className={section2}>
                 <div className={wrapper}>
-                    <h1 className={title2}>Revolutionize Your Workplace with Innovative Solutions!</h1>
-                    <h2 className={text2}>As a business owner, outsourcing your recruitment and hiring process can bring numerous benefits. First, it allows you to focus on your core business operations while leaving the staffing-related tasks to the experts. Second, staffing solutions providers can help you mitigate the risks associated with hiring, such as high turnover rates, legal issues, and training costs.</h2>
-                    <h2 className={text2}>Our HR solutions can include recruiting, screening, and hiring candidates, as well as providing onboarding, training, recruitment, and workforce planning.</h2>
+                    <h1 className={title2}>{content[3].title}</h1>
+                    <h2 className={text2}>{content[3].text}</h2>
+                    <h2 className={text2}>{content[3].text2}</h2>
                 </div>
             </section>
 
             <section className={section1} style={{ backgroundImage: `url(${bg3}` }}>
                 <div className={wrapper}>
-                    <h1 className={title4}>Coaching is <br />a must-have.</h1>
-                    <h2 className={text4}>Investing in business coaching is investing in yourself and your business. It's a proven way to accelerate your growth, improve your performance, and achieve your goals. Don't wait any longer to take your business to the next level - hire a business coach today and unlock your full potential!</h2>
+                    <h1 className={title4}>{content[4].title}</h1>
+                    <h2 className={text4}>{content[4].text}</h2>
                 </div>
             </section>
 
 
             <section className={section5}>
                 <div className={wrapper}>
-                    <h1 className={title5}>A Proven Track Record For Success</h1>
-                    <h2 className={text5}>As our Founder, Tatiana brings over two decades of experience in digital marketing, brand strategy, and social media management to help businesses achieve their goals. She has a proven track record of success in developing effective campaigns for a variety of clients, including well-known brands such as BMW, Kia, Hyundai, Volvo, Suzuki, Honda, Acura, British American Tobacco, Lennar Homes, Palomar Residences, OMNI Residences, and Southern California Edison.</h2>
-                    <h2 className={text5}>Tatiana and her team of industry-specific experts can help propel your brand to new heights. Their approach is collaborative, transparent, and results-driven, providing the highest level of service to clients.</h2>
+                    <h1 className={title5}>{content[5].title}</h1>
+                    <h2 className={text5}>{content[5].text}</h2>
+                    <h2 className={text5}>{content[5].text2}</h2>
                 </div>
             </section>
 
@@ -194,7 +196,7 @@ const section5 = 'bg-[#f0c7bb] h-[770px] w-screen flex justify-center pt-28 pb-1
 const title5 = 'text-[#656566] text-7xl  font-light text-center mb-20 px-[4%] font-gilda lg:text-headLg md:text-headMg sm:text-headSm'
 const text5 = 'text-[#656566] text-2xl leading-10 text-justify self-center px-[4%] mb-10 font-gilda lg:text-pLg md:text-pMg sm:text-pSm'
 
-const title4 = 'text-[#c5b7af] text-7xl mt-14  font-light w-1/2 px-[4%] mb-16 self-end text-end font-gilda lg:text-headLg md:text-headMg sm:text-headSm w-[80%]'
+const title4 = 'text-[#c5b7af] text-7xl mt-14  font-light w-[42%] px-[4%] mb-16 self-end text-end font-gilda lg:text-headLg md:text-headMg sm:text-headSm '
 const text4 = 'px-[4%] w-1/2 text-2xl leading-10 font-light text-justify mb-16 tracking-wider leading-[40px] text-[#c5b7af] self-end font-gilda lg:text-pLg md:text-pMg sm:text-pSm'
 
 const section3 = 'h-[770px] w-screen flex justify-center pt-28 pb-14 bg-cover bg-no-repeat bg-center font-lato md:h-[100%] '

@@ -11,7 +11,7 @@ import Policy from './pages/Policy/Index.tsx';
 import Form from "./pages/CandidateForm/index.tsx";
 import Login from "./pages/LoginForm";
 import Registration from "./pages/registrationForm";
-import UserInfo from "./pages/userInfo";
+import UserInfo from "./pages/Profile/index.tsx";
 import AdminPage from "./pages/Admin";
 import MainPage from './pages/Main/index.tsx';
 import Success from './pages/CandidateForm/Success.tsx';

@@ -1,15 +1,24 @@
-import {NavLink} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import MessagesTable from "./messagesTable.tsx";
 import { useUsers } from "../../Store/Users/useUsers.tsx";
 import { EditOutlined } from "@ant-design/icons";
 import Edit from "./Edit.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "../../Store/User/useUser.tsx";
 
 
 const UserInfo = () => {
     const { users } = useUsers()
-    const user = users.list[0]
+    const navigate = useNavigate()
+    const { user, setUser } = useUser()
     const [isEdit, setIsEdit] = useState(false)
+
+    useEffect(()=>{
+        const storageUser = localStorage.getItem('user')
+        if(!storageUser) return navigate('/login')
+
+        setUser(JSON.parse(storageUser))
+    },[])
 
     return (
         <section className={section}>

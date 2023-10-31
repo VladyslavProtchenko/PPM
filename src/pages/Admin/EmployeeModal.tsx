@@ -91,18 +91,64 @@ const EmployeeModal = ({ data, openModal, handleCloseModal }:{ data: IUser, open
                                 setPhone(e.target.value)
                             }}
                         />
-                        <Input 
-                            value={address}
-                            placeholder='Address' 
+
+                        <div className={addressContainer}>
+                            <Input 
+                                value={address.number}
+                                placeholder='Number street' 
+                                onChange={(e)=>{
+                                    setAddress({...address, number:e.target.value})
+                                }}
+                            />
+                            <Input 
+                                value={address.street}
+                                placeholder='Street' 
+                                onChange={(e)=>{
+                                    setAddress({...address, street:e.target.value})
+                                }}
+                            />
+                            <Input 
+                                value={address.apt}
+                                placeholder='Apartments' 
+                                onChange={(e)=>{
+                                    setAddress({...address, apt:e.target.value})
+                                }}
+                            />
+                            <Input 
+                                value={address.city}
+                                placeholder='City' 
+                                onChange={(e)=>{
+                                    setAddress({...address, city:e.target.value})
+                                }}
+                            />
+                            <Input 
+                                value={address.state}
+                                placeholder='State' 
+                                onChange={(e)=>{
+                                    setAddress({...address, state:e.target.value})
+                                }}
+                            />
+                            <Input 
+                                value={address.country}
+                                placeholder='Country' 
+                                onChange={(e)=>{
+                                    setAddress({...address, country:e.target.value})
+                                }}
+                            />
+                            <Input 
+                            value={address.postalCode}
+                            placeholder='PostalCode' 
                             onChange={(e)=>{
-                                setAddress(e.target.value)
+                                setAddress({...address, postalCode:e.target.value})
                             }}
                         />
+                        </div>
+                        
                         <Input 
                             value={title}
                             placeholder='Title' 
                             onChange={(e)=>{
-                                setTitle(e.target.value)
+                                setAddress({...address, number:e.target.value})
                             }}
                         />
                         <TextArea 
@@ -158,4 +204,5 @@ const EmployeeModal = ({ data, openModal, handleCloseModal }:{ data: IUser, open
 
 export default EmployeeModal;
 
+const addressContainer = 'flex '
 const block = 'flex w-1/2 flex-col space-y-4 px-5' 

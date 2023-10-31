@@ -1,21 +1,20 @@
 import {useForm} from "react-hook-form";
-import {useStoreLogin} from "../../Store/Login/store.ts";
 import {useState} from "react";
 import {BsEye, BsEyeSlash} from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import { IUserLogin } from "../../types/Types.ts";
+import { useUsers } from "../../Store/Users/useUsers.tsx";
 
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate()
-    const {register, handleSubmit, formState: {errors}, reset} = useForm<IUserLogin>({
+    const {register, handleSubmit, formState: {errors}, reset} = useForm<{email:string, password:string}>({
         mode: 'all',
     });
-    
-    const {setLoginData} = useStoreLogin()
+    const { users } = useUsers()
 
-    const onSubmit = (data: IUserLogin) => {
-        setLoginData(data)
+    const onSubmit = (data: {email:string, password:string}) => {
+        const user = users.list[0]
+        localStorage.setItem('user', JSON.stringify({...user, email: data.email}));
         reset()
         navigate('/profile')
     };
@@ -27,17 +26,17 @@ const Login = () => {
                     <div className={loginHead}>Login</div>
                     <form className={loginFormStyles} onSubmit={handleSubmit(onSubmit)}>
                         <div className={controlBlock}>
-                            <label htmlFor="email" className={controlLabel}>Username or Email</label>
+                            <label htmlFor="email" className={controlLabel}>Email</label>
                             <input
-                                className={controlInput + `${errors.userOrEmail ? ' border-red-500' : ''}`}
+                                className={controlInput + `${errors.email ? ' border-red-500' : ''}`}
                                 type="text"
                                 id="email"
-                                placeholder="Username or Email"
-                                {...register("userOrEmail", {
-                                    required: 'Username or email is required'
+                                placeholder="Email"
+                                {...register("email", {
+                                    required: 'Email is required'
                                 })}
                             />
-                            <p className={errorMessage}>{errors.userOrEmail?.message}</p>
+                            <p className={errorMessage}>{errors.email?.message}</p>
                         </div>
                         <div className={controlBlock}>
                             <label htmlFor="password" className={controlLabel}>Password</label>

@@ -17,7 +17,15 @@ const EmployeeList: React.FC = () => {
         name: '',
         email: '',
         phone: '',
-        address: '',
+        address: {
+            number: '',
+            street: '',
+            apt: '',
+            city: '',
+            state: '',
+            country: '',
+            postalCode: '',
+        },
         status: '',
         title: '',
         jobDescription: '',
@@ -108,7 +116,7 @@ const EmployeeList: React.FC = () => {
                     <hr /><br /><br /><br />
                     <span className='flex'><div className={title}>Email:</div> {user.email}</span>
                     <span className='flex'><div className={title}>Contact phone:</div>{user.phone}</span>
-                    <span className='flex'><div className={title}>Address: </div>{user.address}</span>
+                    <span className='flex'><div className={title}>Address: </div>{user.address.number},{user.address.street} </span>
                     <span className='flex'><div className={title}>Title:</div>{user.title}</span>
                     <hr /><br /><br /><br />
                     <span className='flex'><div className={title}>Superior:</div> {user.manager}</span>

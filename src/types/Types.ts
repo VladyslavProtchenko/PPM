@@ -5,22 +5,27 @@ export interface IMessage {
     from: string,
     isApproved: boolean
 }
-
+export interface IContent {
+    section:number, 
+    title?:string, 
+    title2?:string, 
+    text?:string, 
+    text2?:string
+}
 export interface IUser {
     id: number;
     name: string;
     email: string
     phone: string;
-    address: string
-    // {
-    //     number: string,
-    //     street: string,
-    //     apt: string,
-    //     city: string,
-    //     state: string,
-    //     country: string,
-    //     postalCode: string,
-    // };
+    address: {
+        number: string,
+        street: string,
+        apt: string,
+        city: string,
+        state: string,
+        country: string,
+        postalCode: string,
+    };
     status: string;
     title: string;
     jobDescription: string;
@@ -99,11 +104,6 @@ export interface ICandidates {
     setActiveVacancy: (vacancy: {title:string, id:number}) => void;
 }
 
-export interface IUserLogin {
-    userOrEmail: string
-    password: string
-    acceptTerms?: boolean | undefined
-}
 
 export interface IUsers {
     users: {
