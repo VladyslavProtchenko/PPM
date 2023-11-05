@@ -1,6 +1,5 @@
 import {NavLink, useNavigate} from "react-router-dom";
 import MessagesTable from "./messagesTable.tsx";
-import { useUsers } from "../../Store/Users/useUsers.tsx";
 import { EditOutlined } from "@ant-design/icons";
 import Edit from "./Edit.tsx";
 import { useEffect, useState } from "react";
@@ -8,7 +7,6 @@ import { useUser } from "../../Store/User/useUser.tsx";
 
 
 const UserInfo = () => {
-    const { users } = useUsers()
     const navigate = useNavigate()
     const { user, setUser } = useUser()
     const [isEdit, setIsEdit] = useState(false)
@@ -16,76 +14,65 @@ const UserInfo = () => {
     useEffect(()=>{
         const storageUser = localStorage.getItem('user')
         if(!storageUser) return navigate('/login')
-
         setUser(JSON.parse(storageUser))
     },[])
+
+
+    // const values =  {
+    //     id: 'id',
+    //     name: 'Name',
+    //     email: 'Email',
+    //     phone: 'Phone number',
+    //     address: {
+
+    //     },
+    //     status: 'Status',
+    //     title: 'Title',
+    //     jobDescription: 'Job description',
+        
+    //     manager: 'Manage',
+    //     compensation: 'Compensation',
+    //     paymentMethod: 'Payment',
+    //     compensationPeriod: 'Compensation period',
+    //     agreementSigned: 'Agreement from',
+    //     lastPaymentDate: 'Last Payment date',
+    // }
+
 
     return (
         <section className={section}>
             <div className={wrapper}>
                 <section className={content}>
                     <div className={infoCard}>
-                        <div className='flex items-center mb-10 justify-between'>
+                        <EditOutlined className={editIcon} onClick={()=>setIsEdit(!isEdit)}/>
+                        <div className='flex mb-10'>
                             <h1 className={nameTitle}>{user.name}</h1>
-                            <EditOutlined className='text-xl cursor-pointer' onClick={()=>setIsEdit(!isEdit)}/>
                         </div>
 
                         {!isEdit &&<div className={information}>
-                            <div className={infoItem}>
-                                email: <span className={dataItem}>{user.email}</span>
-                            </div>
 
-                            <div className={infoItem}>
-                                Mobile number: <span className={dataItem}>{user.phone}</span>
-                            </div><br/>
+                            {user && Object.keys(user).map((item,index)=>{
 
-                            <div className={addressSection}>
-                                <div className='flex self-start'>Address:</div>
-                                <div className={addressContent}>
-                                    {/* <span className={addressItem}>{user.address.number} </span>
-                                    <span className={addressItem}>{user.address.street}, </span>
-                                    <span className={addressItem}>{user.address.apt}, </span>
-                                    <span className={addressItem}>{user.address.city}</span>
-                                    <span className={addressItem}>({user.address.state}) </span>
-                                    <span className={addressItem}>{user.address.country}, </span>
-                                    <span className={addressItem}>{user.address.postalCode}</span> */}
+                                if(index > 12 || index===0) return;
+
+                                if(item === 'address') {
+                                    return (
+                                        <div className={infoItem}>
+                                            {/* <span className='w-1/2'>{values[item]}: </span>
+                                            <div className={addressContainer}>
+                                                <>
+                                                    {user[item]}
+                                                </>
+                                            </div> */}
+                                        </div>
+                                    )
+                                }
+                                return (
+                                <div className={infoItem}>
+                                    {/* <span className='w-1/2'>{values[item]}: </span>
+                                    <span className={dataItem}>{user[item]}</span> */}
                                 </div>
-                            </div><br />
-
-                            <div className={infoItem}>
-                                status: <span className={dataItem}>{user.status}</span>
-                            </div><div className={infoItem}>
-                                title: <span className={dataItem}>{user.title}</span>
-                            </div><br/>
-
-
-                            <div className={infoItem}>
-                                Brief job description: <span className={dataItem}>{user.jobDescription}</span>
-                            </div>
-
-                            <div className={infoItem}>
-                                Manager: <span className={dataItem}>{user.manager}</span>
-                            </div>
-                            <div className={infoItem}>
-                                Compensation type: <span className={dataItem}>{user.compensation}</span>
-                            </div>
-                            <div className={infoItem}>
-                                Method of payment: <span className={dataItem}>{user.paymentMethod}</span>
-                            </div>
-                            <div className={infoItem}>
-                                Compensation schedule: <span className={dataItem}>{user.compensationPeriod}</span>
-                            </div><br/>
-
-                            <div className={infoItem}>
-                                Agreement signed: <span className={dataItem}>{user.agreementSigned}</span>
-                            </div>
-
-                            <div className={infoItem}>
-                                Signed confidentially agreement: <span className={dataItem}>{user.signedConfidentiallyAgreement}</span>
-                            </div>
-                            <div className={infoItem}>
-                                Last payment date: <span className={dataItem}>{users.list[0].lastPaymentDate}</span>
-                            </div>
+                            )})}
                         </div>}
 
                         {isEdit &&<Edit />}
@@ -94,10 +81,11 @@ const UserInfo = () => {
                     
 
                     <div className={contentCard}>
-                        <div className={greeting}>Welcome, {users.list[0].name}!</div>
+                        <div className={greeting}>Welcome, {user.name}!</div>
                         <MessagesTable />
                     </div>
                 </section>
+
                 <button className={returnBtn}><NavLink to={`/`}>to BRONSKI</NavLink></button>
             </div>
         </section>
@@ -109,22 +97,22 @@ export default UserInfo;
 
 
 // const addressItem = 'font-light text-sm ml-2'
-const addressSection = 'flex  text-gray-800 items-center text-[16px] font-normal  text-[#623e2a] font-lato mr-[10px]'
-const addressContent = 'flex flex-wrap'
+// const addressSection = 'flex  text-gray-800 items-center text-[16px] font-normal  text-[#623e2a] font-lato mr-[10px]'
+// const addressContainer = 'flex flex-coll'
 
-const infoItem = 'flex text-gray-800 text-[16px] font-normal  text-[#623e2a] font-lato mr-[10px] '
-const dataItem = 'text-gray-600 pl-3 text-sm font-thin font-lato'
+const infoItem = 'flex text-gray-800 text-[16px] font-normal  text-[#623e2a] font-lato mr-[10px]'
+// const dataItem = 'text-gray-600 pl-3 text-sm font-thin font-lato'
 
 const returnBtn = 'max-w-[300px] self-center rounded-lg px-4 py-2 bg-[#9e928c] text-gray-100 hover:bg-[#8a807a] duration-300 font-gilda text-p lg:text-pLg md:text-pMg sm:text-pSm'
 
-
+const editIcon = 'absolute text-xl top-[88px] right-8'
 const greeting = 'flex text-[#623e2a] text-4xl font-light  font-gilda mb-6 pl-20'
-const information = 'flex flex-col'
+const information = 'flex flex-col space-y-2'
 
 const nameTitle =' text-3xl'
 
 const contentCard = 'flex flex-col w-2/3 md:w-full  py-10 m-10 '
-const infoCard = 'flex flex-col  w-1/3 p-10  pt-20'
+const infoCard = 'relative flex flex-col  w-1/3 p-10  pt-20 '
 
 const content = 'flex md:flex-col'
 const wrapper = 'flex flex-col items-between w-full max-w-[1440px]'

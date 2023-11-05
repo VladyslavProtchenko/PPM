@@ -566,6 +566,10 @@ video {
   right: 1rem;
 }
 
+.right-8 {
+  right: 2rem;
+}
+
 .right-\[3\%\] {
   right: 3%;
 }
@@ -584,6 +588,10 @@ video {
 
 .top-\[25\%\] {
   top: 25%;
+}
+
+.top-\[88px\] {
+  top: 88px;
 }
 
 .z-40 {
@@ -708,10 +716,6 @@ video {
   margin-top: 3.5rem;
 }
 
-.mt-5 {
-  margin-top: 1.25rem;
-}
-
 .mt-\[200px\] {
   margin-top: 200px;
 }
@@ -772,6 +776,10 @@ video {
   height: 100vh;
 }
 
+.min-h-\[770px\] {
+  min-height: 770px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -806,6 +814,10 @@ video {
 
 .w-\[200px\] {
   width: 200px;
+}
+
+.w-\[32\%\] {
+  width: 32%;
 }
 
 .w-\[42\%\] {
@@ -892,10 +904,6 @@ video {
   justify-content: space-between;
 }
 
-.gap-\[50px\] {
-  gap: 50px;
-}
-
 .space-x-4 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
@@ -967,11 +975,6 @@ video {
   border-color: rgb(0 0 0 / var(--tw-border-opacity));
 }
 
-.border-black {
-  --tw-border-opacity: 1;
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
-}
-
 .border-gray-300 {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1000,11 +1003,6 @@ video {
 .bg-\[\#c5b7af\] {
   --tw-bg-opacity: 1;
   background-color: rgb(197 183 175 / var(--tw-bg-opacity));
-}
-
-.bg-\[\#f0c7bb\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 199 187 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#f3f5fb\] {
@@ -1450,12 +1448,9 @@ video {
   transition-duration: 300ms;
 }
 
-.hover\:-mb-\[1px\]:hover {
-  margin-bottom: -1px;
-}
-
-.hover\:border-b:hover {
-  border-bottom-width: 1px;
+.flag-dropdown {
+  border:none !important;
+  background-color: white !important;
 }
 
 .hover\:bg-\[\#8a807a\]:hover {
@@ -1466,6 +1461,11 @@ video {
 .hover\:bg-blue-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(219 234 254 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-gray-50:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-gray-700:hover {
@@ -1485,6 +1485,11 @@ video {
 .active\:bg-\[\#623e2a\]:active {
   --tw-bg-opacity: 1;
   background-color: rgb(98 62 42 / var(--tw-bg-opacity));
+}
+
+.active\:bg-\[\#8a807a\]:active {
+  --tw-bg-opacity: 1;
+  background-color: rgb(138 128 122 / var(--tw-bg-opacity));
 }
 
 .active\:bg-gray-300:active {
@@ -1519,10 +1524,6 @@ video {
 
   .xl\:flex-col {
     flex-direction: column;
-  }
-
-  .xl\:justify-center {
-    justify-content: center;
   }
 }
 

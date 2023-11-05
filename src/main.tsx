@@ -15,6 +15,7 @@ import UserInfo from "./pages/Profile/index.tsx";
 import AdminPage from "./pages/Admin";
 import MainPage from './pages/Main/index.tsx';
 import Success from './pages/CandidateForm/Success.tsx';
+import Vacancy from './pages/Main/Vacancy.tsx';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <MainPage />,
+        errorElement: <ErrorPage/>
+      },
+      {
+        path: '/vacancy',
+        element: <Vacancy />,
         errorElement: <ErrorPage/>
       },
       {
