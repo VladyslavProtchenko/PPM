@@ -1,20 +1,12 @@
-// import {NavLink} from "react-router-dom";
-// import noAvatar from '../../assets/Images/noavatar.png'
-// import EditPost from "../../components/modals/editPost.tsx";
-// import { useState} from "react";
-// import EditIcon from '@mui/icons-material/Edit';
-// import {GridColDef} from "@mui/x-data-grid";
-// import {users} from "../../DB/Users.tsx"
-// import UserAccounts from "../../components/dataTable/userAccounts.tsx";
 
-// import {Button} from "@mui/material";
 import {useUser} from "../../Store/User/useUser.tsx";
 import PostsList from "./PostsList.tsx";
-import EmployeeList from './EmployeeList.tsx';
+import EmployeeList from './EmployeeTable.tsx';
 import { useState } from 'react';
 import CandidatesList from "./CandidatesList.tsx";
 import { Link } from "react-router-dom";
 import MainPageEdit from "./MainPageEdit.tsx";
+import AdminTable from "./AdminTable.tsx";
 
 const AdminPage = () => {
     const {user } = useUser()
@@ -25,10 +17,11 @@ const AdminPage = () => {
             <div className='w-screen flex justify-center z-40 shadow'>
                 <ul className={navigation}>
                     <Link to='/' className={headerItem +' mr-auto font-black text-blue-900'}>PROPELEM</Link>
+                    <li className={nav===4 ? headerItem + " underline" : headerItem} onClick={() => setNav(4)}>Admin</li>
                     <li className={nav===0 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(0)}>Employee</li>
                     <li className={nav===1 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(1)}>Vacancies</li>
                     <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(2)}>Candidates</li>
-                    <li className={nav===2 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(3)}>Edit main page</li>
+                    <li className={nav===3 ? headerItem + ' underline' : headerItem} onClick={()=>setNav(3)}>Edit main page</li>
                 </ul>
             </div>
             
@@ -80,6 +73,7 @@ const AdminPage = () => {
                     {nav === 1 && <PostsList />}
                     {nav === 2 && <CandidatesList />}
                     {nav === 3 && <MainPageEdit />}
+                    {nav === 4 && <AdminTable />}
                 </div>
             </div>
         </section>
@@ -98,7 +92,7 @@ const dataField = 'text-black text-cardTextP font-lato'
 
 
 const posts = 'flex flex-col w-2/3'
-const adminInfo = 'flex flex-col flex-1 bg-[#f3f5fb] items-center py-10 w-1/3 lg:w-full md:mb-10'
+const adminInfo = 'flex flex-col flex-1 bg-[#f3f5fb] items-center py-4 px-4 w-1/3 lg:w-full md:mb-10'
 
 const navigation ="flex w-full py-3 items-center justify-center max-w-[1240px] "
 const wrapper = 'flex w-full flex-1 max-w-[1440px]'

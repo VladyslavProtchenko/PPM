@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { devtools } from "zustand/middleware";
 import { IUsers } from "../../types/Types";
 
-export const useUsers = create<IUsers>()(
+export const useAdmins = create<IUsers>()(
   devtools((set) => ({
     users: {
       list: [

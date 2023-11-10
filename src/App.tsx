@@ -1,14 +1,11 @@
-import { Outlet } from "react-router-dom"
+import { Outlet } from "react-router-dom";
 
 function App() {
-
   return (
-    <section className={container}>
+    <section className="box-border flex h-full w-full flex-col">
       <Outlet />
     </section>
-  )
+  );
 }
 
-export default App
-
-const container = 'flex flex-col w-full h-full box-border'
+export default App;

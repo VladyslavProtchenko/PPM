@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 .flag-dropdown {
-    border:none !important;
-    background-color: white !important;
+  border: none !important;
+  background-color: white !important;
 }
